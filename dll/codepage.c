@@ -2,6 +2,8 @@
 
 #include <string.h>
 
+#include "3rdparty_utf8/utf8.h"
+
 #include "main.h"
 
 int cp_convert( LPSTR str, int len, const UINT cp_in, const UINT cp_out ) {
@@ -29,7 +31,7 @@ size_t utf8_insert( LPSTR text, size_t len_text, LPSTR str, size_t len_str,
   LPSTR part = text;
 
   while ((part < last) && (index > 0)) {
-    part = (*part == '\0') ? (part + 1) : CharNextExA( CP_UTF8, part, 0 );
+    part += utf8codepointsize(*(unsigned char*)part);
     --index;
   }
 
