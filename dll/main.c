@@ -2,6 +2,8 @@
 
 #include <string.h>
 
+#include "3rdparty_utf8/utf8.h"
+
 #include "codepage.h"
 
 // as in the WinAPI's RegisterClass() and WNDCLASS docs from MSDN
@@ -25,6 +27,14 @@ static BOOL CALLBACK CloseByClassNameCB( HWND hWnd, LPARAM lParam ) {
   }
 
   return TRUE;  // continue enumeration
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+double DLL_EXPORT ucs( char* str ) {
+  int32_t codepoint;
+  utf8codepoint( str, &codepoint );
+  return codepoint;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

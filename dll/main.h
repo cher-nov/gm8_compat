@@ -26,6 +26,8 @@ extern "C"
 {
 #endif
 
+extern double DLL_EXPORT ucs( char* str );
+
 extern double DLL_EXPORT zgm8c_ansi( char* str );
 extern double DLL_EXPORT zgm8c_utf8( char* str );
 

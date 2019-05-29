@@ -1,5 +1,7 @@
 kind dll-cdecl
 
+function ucs( str: string ): real
+
 hfunction zgm8c_ansi( str: string ): real
 hfunction zgm8c_utf8( str: string ): real
 
