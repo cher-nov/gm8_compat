@@ -1,0 +1,2 @@
+*.gml diff=astextplain eol=crlf
+*.extmaker diff=astextplain eol=crlf

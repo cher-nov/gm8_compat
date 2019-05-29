@@ -1,0 +1,8 @@
+kind gml
+
+hfunction zgm8c_init(): real
+
+function ansi( str: string ): string
+function utf8( str: string ): string
+
+function string_utf8_insert( substr: string; str: string; index: real ): string
