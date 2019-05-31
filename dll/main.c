@@ -9,6 +9,8 @@
 // as in the WinAPI's RegisterClass() and WNDCLASS docs from MSDN
 #define MAX_CLASSNAME_LEN (256+1)
 
+#define TREGISTRY_DEFAULT_ACCESS_PTR ((uint32_t*)0x00452B61)
+
 DWORD tls_index = TLS_MINIMUM_AVAILABLE;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +37,19 @@ double DLL_EXPORT ucs( char* str ) {
   int32_t codepoint;
   utf8codepoint( str, &codepoint );
   return codepoint;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+double DLL_EXPORT gm8c_runner_registry_access( double flags ) {
+  DWORD old_protect;
+  BOOL result = VirtualProtect( TREGISTRY_DEFAULT_ACCESS_PTR,
+    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), PAGE_EXECUTE_READWRITE, &old_protect );
+  if (!result) { return GM8_FALSE; }
+  *TREGISTRY_DEFAULT_ACCESS_PTR = flags;
+  VirtualProtect( TREGISTRY_DEFAULT_ACCESS_PTR,
+    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), old_protect, &old_protect );
+  return GM8_TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

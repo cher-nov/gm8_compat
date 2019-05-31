@@ -28,6 +28,8 @@ extern "C"
 
 extern double DLL_EXPORT ucs( char* str );
 
+extern double DLL_EXPORT gm8c_runner_registry_access( double flags );
+
 extern double DLL_EXPORT zgm8c_ansi( char* str );
 extern double DLL_EXPORT zgm8c_utf8( char* str );
 

@@ -1,0 +1,25 @@
+const GM8C_W32_KEY_ALL_ACCESS = $F003F
+const GM8C_W32_KEY_CREATE_LINK = $0020
+const GM8C_W32_KEY_CREATE_SUB_KEY = $0004
+const GM8C_W32_KEY_ENUMERATE_SUB_KEYS = $0008
+const GM8C_W32_KEY_NOTIFY = $0010
+const GM8C_W32_KEY_QUERY_VALUE = $0001
+const GM8C_W32_KEY_READ = $20019
+const GM8C_W32_KEY_SET_VALUE = $0002
+const GM8C_W32_KEY_WOW64_32KEY = $0200
+const GM8C_W32_KEY_WOW64_64KEY = $0100
+const GM8C_W32_KEY_WRITE = $20006
+
+kind dll-cdecl
+
+function ucs( str: string ): real
+
+function gm8c_runner_registry_access( flags: real ): real
+
+hfunction zgm8c_ansi( str: string ): real
+hfunction zgm8c_utf8( str: string ): real
+
+hfunction zgm8c_string_insert( substr: string; str: string; index: real ): real
+
+hfunction zgm8c_buffer( size: real; str: string ): real
+hfunction zgm8c_abort81141( hwnd: real ): real
