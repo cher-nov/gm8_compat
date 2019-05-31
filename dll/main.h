@@ -26,18 +26,17 @@ extern "C"
 {
 #endif
 
-extern double DLL_EXPORT ucs( char* str );
+extern double DLL_EXPORT ucs( char* );
 
-extern double DLL_EXPORT gm8c_runner_registry_access( double flags );
+extern double DLL_EXPORT gm8c_runner_registry_access( double );
 
-extern double DLL_EXPORT zgm8c_ansi( char* str );
-extern double DLL_EXPORT zgm8c_utf8( char* str );
+extern double DLL_EXPORT zgm8c_ansi( char* );
+extern double DLL_EXPORT zgm8c_utf8( char* );
 
-extern double DLL_EXPORT zgm8c_string_insert( char* str, char* text,
-  double index );
+extern double DLL_EXPORT zgm8c_string_insert( char*, char*, double );
 
-extern double DLL_EXPORT zgm8c_buffer( double size, char* str );
-extern double DLL_EXPORT zgm8c_abort81141( double window );
+extern double DLL_EXPORT zgm8c_buffer( double, char* );
+extern double DLL_EXPORT zgm8c_abort81141( double );
 
 #ifdef __cplusplus
 }

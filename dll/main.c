@@ -33,7 +33,7 @@ static BOOL CALLBACK CloseByClassNameCB( HWND hWnd, LPARAM lParam ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double DLL_EXPORT ucs( char* str ) {
+double ucs( char* str ) {
   int32_t codepoint;
   utf8codepoint( str, &codepoint );
   return codepoint;
@@ -41,7 +41,7 @@ double DLL_EXPORT ucs( char* str ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double DLL_EXPORT gm8c_runner_registry_access( double flags ) {
+double gm8c_runner_registry_access( double flags ) {
   DWORD old_protect;
   BOOL result = VirtualProtect( TREGISTRY_DEFAULT_ACCESS_PTR,
     sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), PAGE_EXECUTE_READWRITE, &old_protect );
@@ -54,31 +54,31 @@ double DLL_EXPORT gm8c_runner_registry_access( double flags ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double DLL_EXPORT zgm8c_ansi( char* str ) {
+double zgm8c_ansi( char* str ) {
   return cp_convert( str, GM8_STRLEN(str), CP_UTF8, CP_THREAD_ACP );
 }
 
-double DLL_EXPORT zgm8c_utf8( char* str ) {
+double zgm8c_utf8( char* str ) {
   return cp_convert( str, GM8_STRLEN(str), CP_THREAD_ACP, CP_UTF8 );
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double DLL_EXPORT zgm8c_string_insert( char* str, char* text, double pos ) {
+double zgm8c_string_insert( char* str, char* text, double pos ) {
   if (--pos < 0) { pos = 0; }
   return utf8_insert( text, GM8_STRLEN(text), str, GM8_STRLEN(str), pos );
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double DLL_EXPORT zgm8c_buffer( double size, char* str ) {
+double zgm8c_buffer( double size, char* str ) {
   void* result = TlsGetValue( tls_index );
   if (result == NULL) { return GM8_FALSE; }
   memcpy( str, result, size );
   return GM8_TRUE;
 }
 
-double DLL_EXPORT zgm8c_abort81141( double window ) {
+double zgm8c_abort81141( double window ) {
   //HWND winh = GM8_HWND(window);
   DWORD thread_id = GetCurrentThreadId();
 
