@@ -16,8 +16,11 @@
 
 #define GM8_HWND(value) ((HWND)((intptr_t)value))
 
-#define GM8_STRLEN(gm_str) \
+#define GM81_STRLEN(gm_str) \
   (*(uint32_t*)((const char*)gm_str - sizeof(uint32_t)))
+
+#define GM8_STRLEN(gm_str) \
+  ((gm_str == (const char*)0x00405DFD) ? 0 : GM81_STRLEN(gm_str))
 
 extern DWORD tls_index;
 

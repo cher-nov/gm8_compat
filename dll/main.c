@@ -55,18 +55,18 @@ double gm8c_runner_registry_access( double flags ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 double zgm8c_ansi( char* str ) {
-  return cp_convert( str, GM8_STRLEN(str), CP_UTF8, CP_THREAD_ACP );
+  return cp_convert( str, GM81_STRLEN(str), CP_UTF8, CP_THREAD_ACP );
 }
 
 double zgm8c_utf8( char* str ) {
-  return cp_convert( str, GM8_STRLEN(str), CP_THREAD_ACP, CP_UTF8 );
+  return cp_convert( str, GM81_STRLEN(str), CP_THREAD_ACP, CP_UTF8 );
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 double zgm8c_string_insert( char* str, char* text, double pos ) {
   if (--pos < 0) { pos = 0; }
-  return utf8_insert( text, GM8_STRLEN(text), str, GM8_STRLEN(str), pos );
+  return utf8_insert( text, GM81_STRLEN(text), str, GM81_STRLEN(str), pos );
 }
 
 ////////////////////////////////////////////////////////////////////////////////
