@@ -1,16 +1,18 @@
 #define zgm8c_init
 
-var is_gm81141;
-is_gm81141 = false;
+var is_81141, is_8121x;
+is_81141 = false;
+is_8121x = false;
 
-if (gamemaker_version == 810)
-if (string_char_at('!', 0) == '')
-if (execute_string('return get_function_address( "clamp" );') > 0)
-if (execute_string('return get_function_address( "lerp" );') > 0)
-  is_gm81141 = true;
+if (gamemaker_version == 810) if (string_char_at('!', 0) == '')
+if (execute_string('return get_function_address("clamp")') > 0)
+if (execute_string('return get_function_address("lerp")') > 0) {
+  is_81141 = execute_string('return get_function_address("display_get_orientation")') <= 0;
+  is_8121x = execute_string('return get_function_address("dot_product_normalised")') > 0;
+}
 
-if !is_gm81141 {
-  zgm8c_abort81141(window_handle());
+if !is_81141 && !is_8121x {
+  zgm8c_abort_startup();
   exit;
 }
 

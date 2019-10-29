@@ -9,6 +9,7 @@
 // as in the WinAPI's RegisterClass() and WNDCLASS docs from MSDN
 #define MAX_CLASSNAME_LEN (256+1)
 
+// this value is the same for 8.1.141 and 8.1.21x runners
 #define TREGISTRY_DEFAULT_ACCESS_PTR ((uint32_t*)0x00452B61)
 
 DWORD tls_index = TLS_MINIMUM_AVAILABLE;
@@ -42,13 +43,15 @@ double ucs( char* str ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 double gm8c_runner_registry_access( double flags ) {
-  DWORD old_protect;
+  DWORD old_mode;
   BOOL result = VirtualProtect( TREGISTRY_DEFAULT_ACCESS_PTR,
-    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), PAGE_EXECUTE_READWRITE, &old_protect );
+    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), PAGE_EXECUTE_READWRITE, &old_mode );
+
   if (!result) { return GM8_FALSE; }
   *TREGISTRY_DEFAULT_ACCESS_PTR = flags;
+
   VirtualProtect( TREGISTRY_DEFAULT_ACCESS_PTR,
-    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), old_protect, &old_protect );
+    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), old_mode, &old_mode );
   return GM8_TRUE;
 }
 
@@ -78,10 +81,7 @@ double zgm8c_buffer( double size, char* str ) {
   return GM8_TRUE;
 }
 
-double zgm8c_abort81141( double window ) {
-  //HWND winh = GM8_HWND(window);
-  DWORD thread_id = GetCurrentThreadId();
-
+double zgm8c_abort_startup(void) {
   // TODO: Is there a more gentle way to abort the GameMaker runner in GML init
   // script? Note that in Debug Mode the debugger causes an endless Access
   // Violation by attempting to access the uninitialized runner data. Also the
@@ -91,12 +91,11 @@ double zgm8c_abort81141( double window ) {
   // TApplication.Terminate from Delphi 2010, but I failed to manage it here.
   // Also note that show_error() fails the same way as simple MessageBox().
 
+  const DWORD thread_id = GetCurrentThreadId();
   EnumThreadWindows( thread_id, &CloseByClassNameCB, (LPARAM)L"TApplication" );
-  MessageBox( NULL, L"GameMaker 8.1.141 is required.", L"GM8C", MB_ICONERROR );
+  MessageBox( NULL, L"Unsupported GM runner version.", L"GM8C", MB_ICONERROR );
   ExitProcess(-1);
-
   return GM8_VOID;
-  UNREFERENCED_PARAMETER(window);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
