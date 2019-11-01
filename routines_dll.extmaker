@@ -21,5 +21,5 @@ hfunction zgm8c_utf8( str: string ): real
 
 hfunction zgm8c_string_insert( substr: string; str: string; index: real ): real
 
-hfunction zgm8c_buffer( size: real; str: string ): real
+hfunction zgm8c_result( str: string ): real
 hfunction zgm8c_abort_startup(): real

@@ -38,7 +38,7 @@ extern double DLL_EXPORT zgm8c_utf8( char* );
 
 extern double DLL_EXPORT zgm8c_string_insert( char*, char*, double );
 
-extern double DLL_EXPORT zgm8c_buffer( double, char* );
+extern double DLL_EXPORT zgm8c_result( char* );
 extern double DLL_EXPORT zgm8c_abort_startup(void);
 
 #ifdef __cplusplus

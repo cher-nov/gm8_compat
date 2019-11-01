@@ -21,28 +21,25 @@ surface_free(surface_create(0, 0));
 
 #define ansi
 
-var s, r;
-s = zgm8c_ansi(argument0);
-r = s*ansi_char(0);
-zgm8c_buffer(s, r);
-return r;
+var b;
+b = zgm8c_ansi(argument0)*"?";
+zgm8c_result(b);
+return b;
 
 
 #define utf8
 
-var s, r;
-s = zgm8c_utf8(argument0);
-r = s*ansi_char(0);
-zgm8c_buffer(s, r);
-return r;
+var b;
+b = zgm8c_utf8(argument0)*"?";
+zgm8c_result(b);
+return b;
 
 
 #define string_utf8_insert
 
-var s, r;
-s = zgm8c_string_insert(argument0, argument1, argument2);
-r = s*ansi_char(0);
-zgm8c_buffer(s, r);
-return r;
+var b;
+b = zgm8c_string_insert(argument0, argument1, argument2)*"?";
+zgm8c_result(b);
+return b;
 
 //

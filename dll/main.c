@@ -74,10 +74,10 @@ double zgm8c_string_insert( char* str, char* text, double pos ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double zgm8c_buffer( double size, char* str ) {
+double zgm8c_result( char* str ) {
   void* result = TlsGetValue( tls_index );
   if (result == NULL) { return GM8_FALSE; }
-  memcpy( str, result, size );
+  memcpy( str, result, GM81_STRLEN(str) );
   return GM8_TRUE;
 }
 
