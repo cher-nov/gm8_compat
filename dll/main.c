@@ -100,8 +100,11 @@ double zgm8c_abort_startup(void) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-extern "C" DLL_EXPORT BOOL APIENTRY DllMain( HINSTANCE hinstDLL,
-  DWORD fdwReason, LPVOID lpvReserved )
+#ifdef __cplusplus
+extern "C"
+#endif
+DLL_EXPORT BOOL APIENTRY DllMain( HINSTANCE hinstDLL, DWORD fdwReason,
+  LPVOID lpvReserved )
 {
   LPVOID data_ptr;
 
