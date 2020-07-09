@@ -18,6 +18,7 @@ function gm8c_runner_registry_access( flags: real ): real
 
 hfunction zgm8c_ansi( str: string ): real
 hfunction zgm8c_utf8( str: string ): real
+hfunction zgm8c_acp( str: string ): real
 
 hfunction zgm8c_string_insert( substr: string; str: string; index: real ): real
 

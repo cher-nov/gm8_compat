@@ -58,18 +58,32 @@ double gm8c_runner_registry_access( double flags ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 double zgm8c_ansi( char* str ) {
-  return cp_convert( str, GM81_STRLEN(str), CP_UTF8, CP_THREAD_ACP );
+  return cp_convert( str, GM81_STRLENGTH(str), CP_UTF8, CP_ACP );
 }
 
 double zgm8c_utf8( char* str ) {
-  return cp_convert( str, GM81_STRLEN(str), CP_THREAD_ACP, CP_UTF8 );
+  return cp_convert( str, GM81_STRLENGTH(str), CP_ACP, CP_UTF8 );
+}
+
+// NOTE: Any attempt to use it on an empty string without the provided check
+// would result in an 'Access Violation' error. See 'main.h' for details.
+// Also note that the empty AnsiString literal from Delphi 2010 RTL has its
+// codepage set to CP_ACP by default, not CP_UTF8 as it could be expected.
+double DLL_EXPORT zgm8c_acp( char* str ) {
+  if (GM81_STRLENGTH(str) == 0) { return GM8_FALSE; }
+  GM81_STRCODEPAGE(str) = CP_ACP;  // should correspond to the zgm8c_ansi()
+  return GM8_TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 double zgm8c_string_insert( char* str, char* text, double pos ) {
   if (--pos < 0) { pos = 0; }
-  return utf8_insert( text, GM81_STRLEN(text), str, GM81_STRLEN(str), pos );
+  return utf8_insert(
+    text, GM81_STRLENGTH(text),
+    str, GM81_STRLENGTH(str),
+    pos
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +91,7 @@ double zgm8c_string_insert( char* str, char* text, double pos ) {
 double zgm8c_result( char* str ) {
   void* result = TlsGetValue( tls_index );
   if (result == NULL) { return GM8_FALSE; }
-  memcpy( str, result, GM81_STRLEN(str) );
+  memcpy( str, result, GM81_STRLENGTH(str) );
   return GM8_TRUE;
 }
 

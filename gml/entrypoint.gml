@@ -23,6 +23,7 @@ surface_free(surface_create(0, 0));
 
 var b;
 b = zgm8c_ansi(argument0)*"?";
+zgm8c_acp(b);
 zgm8c_result(b);
 return b;
 
