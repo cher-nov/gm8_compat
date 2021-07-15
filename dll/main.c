@@ -52,6 +52,10 @@ double gm8c_runner_registry_access( double flags ) {
 
   VirtualProtect( TREGISTRY_DEFAULT_ACCESS_PTR,
     sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR), old_mode, &old_mode );
+
+  FlushInstructionCache( GetCurrentProcess(), TREGISTRY_DEFAULT_ACCESS_PTR,
+    sizeof(*TREGISTRY_DEFAULT_ACCESS_PTR) );
+
   return GM8_TRUE;
 }
 
