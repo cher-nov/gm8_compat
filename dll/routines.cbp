@@ -62,15 +62,15 @@
 		<Unit filename="codepage.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="codepage.h" />
-		<Unit filename="main.c">
-			<Option compilerVar="CPP" />
+		<Unit filename="codepage.h">
+			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="main.h" />
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.h">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
