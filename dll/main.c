@@ -73,7 +73,7 @@ double zgm8c_utf8( char* str ) {
 // would result in an 'Access Violation' error. See 'main.h' for details.
 // Also note that the empty AnsiString literal from Delphi 2010 RTL has its
 // codepage set to CP_ACP by default, not CP_UTF8 as it could be expected.
-double DLL_EXPORT zgm8c_acp( char* str ) {
+double zgm8c_acp( char* str ) {
   if (GM81_STRLENGTH(str) == 0) { return GM8_FALSE; }
   GM81_STRCODEPAGE(str) = CP_ACP;  // should correspond to the zgm8c_ansi()
   return GM8_TRUE;
